@@ -2,6 +2,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
 public class Person implements Serializable {
+	public Person() {
+		super();
+	}
+	public Person(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.isEmployer = false;
+		this.myCart = new Cart(new ArrayList<OrderEntry>(), 0);
+	}
 	public Person(String username, String password, boolean isEmployer, Cart myCart) {
 		super();
 		this.username = username;
@@ -14,6 +24,13 @@ public class Person implements Serializable {
 	private boolean isEmployer;
 	private Cart myCart;
 	
+	public boolean equals(Person toCompare) {
+		if (this.getUsername().equals(toCompare.getUsername()) &&
+				this. getPassword().equals(toCompare.getPassword())) {
+			return true;
+		}
+		else return false;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -38,8 +55,8 @@ public class Person implements Serializable {
 	public void setMyCart(Cart myCart) {
 		this.myCart = myCart;
 	}
-	public List<Product> search(String searchedProduct, List<Product> products) {
-		List<Product> toReturn = new ArrayList<Product>();
+	public ArrayList<Product> search(String searchedProduct, List<Product> products) {
+		ArrayList<Product> toReturn = new ArrayList<Product>();
 		if (this.isEmployer == false) {
 			for(int i = 0 ; i < products.size() ; i++) {
 				if(products.get(i).getName().equals(searchedProduct) && 

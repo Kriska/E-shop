@@ -55,18 +55,16 @@ public class main {
 		}
 		*/
 
-		GraphicInterface startWindow= new GraphicInterface("My First Shop");
+		
 		Person user1 = new Person("Krisi", "123", false, new Cart(new ArrayList<OrderEntry>(), 0));
 		Person admin = new Person("admin", "root", true, new Cart(new ArrayList<OrderEntry>(), 0));
 		ArrayList<Person> users = new ArrayList<Person>();
 		users.add(user1);
 		users.add(admin); 
-		startWindow.login(users);
-		startWindow.shop("My first Shop");
-		
-		startWindow.setVisible(true);
+
 		
 		ArrayList<Product> products = new ArrayList<Product>();
+		
 		try {
 			products = deserialize(TARGET_FILE_PATH);
 		} catch (ClassNotFoundException e) {
@@ -77,9 +75,10 @@ public class main {
 			e.printStackTrace();
 		}
 
-		Interface console = new Interface();
+		GraphicInterface startWindow= new GraphicInterface(users,products);
+		startWindow.start();
 		
-		
+		startWindow.setVisible(true);
 		/*try {
 			serialize(users, TARGET_FILE_PATH2);
 		} catch (IOException e) {
