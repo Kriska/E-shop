@@ -1,4 +1,1 @@
-# E-shop project written in Java
-
-TODO:
-Add GUI 
+# UNFINISHED E-shop project written in Java
